@@ -29,7 +29,7 @@ export const useProductStore = defineStore('product', {
     async insertProduct (requestBody) {
       return fetch(`/api/product`, {
         method: 'POST',
-        body: requestBody
+        body: JSON.stringify(requestBody)
       })
       .then((res) => res.json())
       .catch(err => console.log(err))
@@ -37,9 +37,10 @@ export const useProductStore = defineStore('product', {
     async editProduct ({ id, requestBody }) {
       return fetch(`/api/product/${id}`, {
         method: 'PUT',
-        body: requestBody
+        body: JSON.stringify(requestBody)
       })
       .then((res) => res.json())
+      .catch(err => console.log(err))
     },
     async deleteProduct (id) {
       return fetch(`/api/product/${id}`, {

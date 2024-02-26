@@ -1,5 +1,6 @@
 <template>
   <div class="product-form">
+    <h4 class="product-form__title">{{ isEditPage ? 'Edit Product' : 'Insert Product' }}</h4>
     <div class="product-form__name">
       <div class="product-form__name__label">
         <label>Product Name<span class="required">*</span></label>
@@ -77,6 +78,10 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  &__title {
+    margin: 0;
+  }
 
   &__name, &__category, &__quantity, &__unit-price {
     display: flex;

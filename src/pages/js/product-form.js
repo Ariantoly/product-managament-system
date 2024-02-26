@@ -51,7 +51,7 @@ export default {
       }
       BliToast.open({
         status: 'error',
-        text: 'Please fill the required field'
+        text: 'Please fill in the required field'
       })
     },
     edit () {

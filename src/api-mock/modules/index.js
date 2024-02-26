@@ -32,6 +32,22 @@ export default [
     }
   },
   {
+    url: '/api/product/1',
+    method: 'GET',
+    status: 200,
+    response: {
+      code: 200,
+      status: 'OK',
+      data: {
+        id: 1,
+        name: 'Roti',
+        category: 'Makanan',
+        quantity: 12,
+        unitPrice: 5000
+      }
+    }
+  },
+  {
     url: '/api/product',
     method: 'POST',
     status: 200,
@@ -45,6 +61,22 @@ export default [
       code: 200,
       status: 'OK',
       data: 'Success to insert new product'
+    }
+  },
+  {
+    url: '/api/product/1',
+    method: 'PUT',
+    status: 200,
+    param_values: {
+      name: 'Kopi',
+      category: 'Minuman',
+      quantity: 12,
+      unitPrice: 5000
+    },
+    response: {
+      code: 200,
+      status: 'OK',
+      data: 'Success to update selected product'
     }
   },
   {
