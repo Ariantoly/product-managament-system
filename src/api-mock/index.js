@@ -42,9 +42,10 @@ export function mockServer() {
         })
       })
       this.post('/api/product', (schema, request) => {
+        const body = JSON.parse(request.requestBody)
         products.push({
           id: id,
-          ...request.requestBody
+          ...body
         })
         id++
         return new Response(200, {}, {
@@ -55,7 +56,8 @@ export function mockServer() {
       })
       this.put('/api/product/:id', (schema, request) => {
         const productIdx = products.findIndex(product => product.id == request.params.id)
-        Object.entries(request.requestBody).forEach(([key, value]) => {
+        const body = JSON.parse(request.requestBody)
+        Object.entries(body).forEach(([key, value]) => {
           products[productIdx][key] = value
         })
         return new Response(200, {}, {
