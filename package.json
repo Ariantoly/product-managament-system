@@ -1,0 +1,52 @@
+{
+  "name": "product-management-system",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite --host",
+    "dev-nomock": "cross-env VITE_NOMOCK=true vite --host",
+    "build": "vite build",
+    "preview": "vite preview",
+    "unit": "vitest run",
+    "integration:prepare": "blibli-integration main:prepare",
+    "integration:run-main": "blibli-integration main:run",
+    "integration:run-docker": "blibli-integration docker:run",
+    "integration:stop-docker": "blibli-integration docker:stop",
+    "integration:base": "blibli-integration base",
+    "integration:updateSnapshot": "blibli-integration updateSnapshot",
+    "integration:report": "blibli-integration report",
+    "integration:run": "blibli-integration run",
+    "integration:run-apps-local": "blibli-integration apps:run-local",
+    "integration:run-apps": "blibli-integration apps:run",
+    "integration:local": "blibli-integration test:local",
+    "integration": "blibli-integration test:ci",
+    "test": "npm run unit && npm run integration:prepare && npm run integration"
+  },
+  "dependencies": {
+    "@blibli/blue-design-tokens": "^3.0.7",
+    "@blibli/blue-dls-library-icon": "^3.0.10",
+    "@blibli/blue-dls-utils": "^3.0.6",
+    "@blibli/blue-font": "^3.0.5",
+    "@blibli/blue.button": "^3.0.5",
+    "@blibli/blue.field": "^3.0.9",
+    "@blibli/blue.link": "^3.0.3",
+    "@blibli/blue.modal": "^3.0.10",
+    "@blibli/blue.table": "^3.0.7",
+    "@blibli/blue.text-field": "^3.0.5",
+    "@blibli/blue.toast": "^3.0.6",
+    "miragejs": "^0.1.45",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.19",
+    "vue-router": "^4.3.0"
+  },
+  "devDependencies": {
+    "@blibli/integration-test-tools": "^1.9.12",
+    "@pinia/testing": "^0.1.3",
+    "@vitejs/plugin-vue": "^5.0.4",
+    "@vue/test-utils": "^2.4.4",
+    "cross-env": "^7.0.3",
+    "jsdom": "^24.0.0",
+    "vite": "^5.1.4",
+    "vitest": "^1.3.1"
+  }
+}
