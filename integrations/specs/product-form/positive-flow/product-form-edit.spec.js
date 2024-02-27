@@ -5,11 +5,13 @@ const host = require('@blibli/integration-test-tools/lib/utils/host')
 
 /* Scenario:
 1. Main page load well
-2. Delete first product
-3. Click confirm
+2. Click edit on first product
+3. Update the product data
+4. Click edit should show toast and back to product list
 */
 
-describe('product list', () => {
+describe('product form insert', () => {
+  
   beforeAll(async () => {
     await responsiveUtil.setDesktop(page)
     await page.goto('http://' + host.name + ':8080')
@@ -21,14 +23,23 @@ describe('product list', () => {
     await snapshotUtil.assertSnapshot(expect, page)
   })
 
-  test('2. Delete first product', async () => {
-    await page.click('#delete-button-0')
+  test('2. Click edit on first product', async () => {
+    await page.locator('#edit-button-0').click()
     await page.waitForTimeout(500)
     await snapshotUtil.assertSnapshot(expect, page)
   })
 
-  test('3. Click confirm', async () => {
-    await page.click('#confirm-button')
+  test('3. Update the product data', async () => {
+    await page.locator('input#name').fill('Kopi')
+    await page.locator('input#category').fill('Minuman')
+    await page.locator('input#quantity').fill('20')
+    await page.locator('input#unit-price').fill('9000')
+    await page.waitForTimeout(1000)
+    await snapshotUtil.assertSnapshot(expect, page)
+  })
+
+  test('4. Click edit should show toast and back to product list', async () => {
+    await page.click('#submit-button')
     await page.locator('.blu-toast').first().waitFor()
     await page.waitForTimeout(500)
     await snapshotUtil.assertSnapshot(expect, page)
