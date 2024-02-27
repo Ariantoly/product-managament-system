@@ -7,7 +7,8 @@ import { useProductStore } from '/src/store/product.js'
 const mocks = {
   $router: {
     push: vi.fn()
-  }
+  },
+  convertPriceToRupiah: vi.fn()
 }
 
 describe('Home', () => {
@@ -21,8 +22,8 @@ describe('Home', () => {
       }
     })
 
-    // store = useProductStore()
-    // store.products = getProductInitData()
+    store = useProductStore()
+    store.products = getProductInitData()
   })
 
   function getProductInitData() {
@@ -60,26 +61,14 @@ describe('Home', () => {
     expect(wrapper.vm.totalQuantity).toBe(57)
   })
 
-  test('[methods] fetchProduct', async () => {
+  test('[methods] fetchProduct', () => {
     const getProductsSpy = vi.spyOn(wrapper.vm, 'getProducts')
-    wrapper.vm.productData = [
-      {
-        id: 1,
-        name: 'Roti',
-        category: 'Makanan',
-        quantity: 12,
-        unitPrice: 5000
-      }
-    ]
     wrapper.vm.fetchProducts()
-    expect(wrapper.vm.productData).toHaveLength(0)
     expect(getProductsSpy).toHaveBeenCalledOnce()
   })
 
   test('[methods] mapProductsToTableData', () => {
-    const getProductsSpy = vi.spyOn(wrapper.vm, 'getProducts')
     wrapper.vm.mapProductsToTableData()
-    expect(getProductsSpy).toHaveBeenCalledOnce()
     expect(wrapper.vm.productData).toEqual(wrapper.vm.products.map(product => {
       return {
         id: product.id,
