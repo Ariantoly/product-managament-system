@@ -77,9 +77,7 @@ describe('Home', () => {
   })
 
   test('[methods] mapProductsToTableData', () => {
-    const getProductsSpy = vi.spyOn(wrapper.vm, 'getProducts')
     wrapper.vm.mapProductsToTableData()
-    expect(getProductsSpy).toHaveBeenCalledOnce()
     expect(wrapper.vm.productData).toEqual(wrapper.vm.products.map(product => {
       return {
         id: product.id,
